@@ -61,34 +61,40 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Overlay */}
       <div 
         className={twMerge(
           clsx(
-            "md:hidden absolute top-16 w-[calc(100%-2rem)] max-w-sm rounded-2xl border border-white/10 bg-[#020817]/95 backdrop-blur-3xl shadow-2xl overflow-hidden transition-all duration-300 origin-top",
-            isMobileMenuOpen ? "opacity-100 scale-y-100 translate-y-0" : "opacity-0 scale-y-95 -translate-y-2 pointer-events-none"
+            "md:hidden fixed inset-0 z-10 bg-background/98 backdrop-blur-2xl transition-all duration-300 flex flex-col",
+            isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           )
         )}
       >
-        <div className="flex flex-col p-4 gap-4">
-          <Link href="/docs" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium text-foreground hover:bg-white/5 rounded-lg transition-colors">
-            Documentation
-          </Link>
-          <Link href="/blogs" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium text-foreground hover:bg-white/5 rounded-lg transition-colors">
-            Blog
-          </Link>
-          <div className="h-px bg-white/10 w-full my-2" />
-          <div className="flex items-center justify-around px-4 pb-2">
-            <Link href="https://www.npmjs.com/package/@hort/nps" target="_blank" rel="noreferrer" className="p-3 text-muted hover:text-foreground bg-white/5 rounded-full transition-colors">
-              <Package className="h-5 w-5" />
+        <div className="flex flex-col h-full pt-28 px-6 pb-8">
+          <div className="flex flex-col gap-6 text-2xl font-semibold tracking-tight">
+            <Link href="/docs" onClick={() => setIsMobileMenuOpen(false)} className="text-foreground hover:text-primary transition-colors border-b border-white/5 pb-6">
+              Documentation
             </Link>
-            <Link href="https://github.com/netaji/npm-safe" target="_blank" rel="noreferrer" className="p-3 text-muted hover:text-foreground bg-white/5 rounded-full transition-colors">
-              <GitBranch className="h-5 w-5" />
+            <Link href="/blogs" onClick={() => setIsMobileMenuOpen(false)} className="text-foreground hover:text-primary transition-colors border-b border-white/5 pb-6">
+              Blog
             </Link>
           </div>
-          <Link href="/docs" onClick={() => setIsMobileMenuOpen(false)} className="w-full text-center rounded-full text-sm font-medium transition-colors bg-primary text-primary-foreground shadow hover:bg-primary/90 h-10 flex items-center justify-center">
-            Get Started
-          </Link>
+          
+          <div className="mt-auto flex flex-col gap-6">
+            <div className="flex items-center gap-6">
+              <Link href="https://www.npmjs.com/package/@hort/nps" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-muted hover:text-foreground transition-colors">
+                <Package className="h-6 w-6" />
+                <span className="font-medium">NPM</span>
+              </Link>
+              <Link href="https://github.com/netaji/npm-safe" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-muted hover:text-foreground transition-colors">
+                <GitBranch className="h-6 w-6" />
+                <span className="font-medium">GitHub</span>
+              </Link>
+            </div>
+            <Link href="/docs" onClick={() => setIsMobileMenuOpen(false)} className="w-full text-center rounded-2xl text-lg font-bold transition-colors bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:bg-primary/90 py-4 flex items-center justify-center">
+              Get Started
+            </Link>
+          </div>
         </div>
       </div>
     </header>
