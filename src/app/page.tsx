@@ -174,31 +174,23 @@ export default function Home() {
             <p className="text-muted text-lg">Built by the open-source community, for the open-source community.</p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 max-w-3xl mx-auto">
             {/* Netaji */}
-            <a href="https://github.com/chnetajibc" target="_blank" rel="noreferrer" className="flex flex-col items-center p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-primary/50 transition-all text-center group relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-primary to-secondary p-1 mb-6 shadow-xl group-hover:scale-105 transition-transform">
-                <img src="https://github.com/chnetajibc.png" alt="Netaji" className="w-full h-full rounded-full object-cover" />
+            <a href="https://github.com/chnetajibc" target="_blank" rel="noreferrer" className="flex items-center gap-4 p-3 pr-8 rounded-full border border-border/50 bg-white/[0.01] hover:bg-white/[0.03] hover:border-border transition-all group w-full sm:w-auto">
+              <img src="https://github.com/chnetajibc.png" alt="Netaji" className="w-14 h-14 rounded-full border border-white/10 group-hover:border-primary/50 transition-colors" />
+              <div className="text-left">
+                <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">CH Netaji Bhadraiahnath</h3>
+                <p className="text-xs text-muted mt-0.5">Core Contributor</p>
               </div>
-              <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">CH Netaji Bhadraiahnath Chowdary</h3>
-              <p className="text-muted mb-4">Core Contributor</p>
-              <span className="text-sm font-medium text-primary hover:text-secondary transition-colors">
-                @chnetajibc
-              </span>
             </a>
 
             {/* Abhishek */}
-            <a href="https://github.com/abhishektumula" target="_blank" rel="noreferrer" className="flex flex-col items-center p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-emerald-500/50 transition-all text-center group relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/20 rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-blue-500 to-emerald-400 p-1 mb-6 shadow-xl group-hover:scale-105 transition-transform">
-                <img src="https://github.com/abhishektumula.png" alt="Abhishek" className="w-full h-full rounded-full object-cover" />
+            <a href="https://github.com/abhishektumula" target="_blank" rel="noreferrer" className="flex items-center gap-4 p-3 pr-8 rounded-full border border-border/50 bg-white/[0.01] hover:bg-white/[0.03] hover:border-border transition-all group w-full sm:w-auto">
+              <img src="https://github.com/abhishektumula.png" alt="Abhishek" className="w-14 h-14 rounded-full border border-white/10 group-hover:border-primary/50 transition-colors" />
+              <div className="text-left">
+                <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">Abhishek Tumula</h3>
+                <p className="text-xs text-muted mt-0.5">Core Contributor</p>
               </div>
-              <h3 className="text-xl font-bold mb-1 group-hover:text-emerald-400 transition-colors">Abhishek Tumula</h3>
-              <p className="text-muted mb-4">Core Contributor</p>
-              <span className="text-sm font-medium text-blue-400 hover:text-emerald-400 transition-colors">
-                @abhishektumula
-              </span>
             </a>
           </div>
         </div>
