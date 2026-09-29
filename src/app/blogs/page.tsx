@@ -8,20 +8,20 @@ export default function BlogsPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Blog Hero */}
-      <section className="relative py-24 md:py-32 overflow-hidden border-b border-white/10">
+      <section className="relative py-16 md:py-24 overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-background to-background -z-10" />
         <div className="container mx-auto px-4 max-w-5xl text-center relative z-10">
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 md:mb-6">
             Insights & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Security Research</span>
           </h1>
-          <p className="text-xl text-muted max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-muted max-w-2xl mx-auto">
             Deep dives into Node.js vulnerabilities, supply chain attacks, and how to secure your ecosystem.
           </p>
         </div>
       </section>
 
       {/* Blog Grid */}
-      <section className="py-20 container mx-auto px-4 max-w-6xl">
+      <section className="py-12 md:py-20 container mx-auto px-4 max-w-6xl">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post, idx) => (
             <Link href={`/blogs/${post.slug}`} key={post.slug} className="group flex flex-col h-full">
