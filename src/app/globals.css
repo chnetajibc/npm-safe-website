@@ -3,11 +3,11 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --primary: #3b82f6;
-  --muted: #a3a3a3;
-  --border: #333333;
+  --background: #020817;
+  --foreground: #f8fafc;
+  --primary: #6366f1;
+  --muted: #64748b;
+  --border: #1e293b;
 }
 
 @theme inline {
