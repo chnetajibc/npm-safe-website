@@ -176,15 +176,15 @@ export default function Home() {
           
           <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {/* Netaji */}
-            <a href="https://github.com/netaji" target="_blank" rel="noreferrer" className="flex flex-col items-center p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-primary/50 transition-all text-center group relative overflow-hidden">
+            <a href="https://github.com/chnetajibc" target="_blank" rel="noreferrer" className="flex flex-col items-center p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-primary/50 transition-all text-center group relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-primary to-secondary p-1 mb-6 shadow-xl group-hover:scale-105 transition-transform">
-                <img src="https://github.com/netaji.png" alt="Netaji" className="w-full h-full rounded-full object-cover" />
+                <img src="https://github.com/chnetajibc.png" alt="Netaji" className="w-full h-full rounded-full object-cover" />
               </div>
               <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">CH Netaji Bhadraiahnath Chowdary</h3>
               <p className="text-muted mb-4">Core Contributor</p>
               <span className="text-sm font-medium text-primary hover:text-secondary transition-colors">
-                @netaji
+                @chnetajibc
               </span>
             </a>
 
