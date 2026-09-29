@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div className="fixed inset-0 z-[-1] bg-gradient-to-t from-background via-transparent to-background"></div>
         
         <Navbar />
-        <main className="flex-1 z-0">{children}</main>
+        <main className="flex-1 z-0 pt-24">{children}</main>
         <Footer />
       </body>
     </html>

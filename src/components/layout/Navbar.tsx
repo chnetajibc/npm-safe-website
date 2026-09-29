@@ -3,13 +3,13 @@ import { GitBranch, ShieldCheck } from 'lucide-react';
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 w-full">
+      <div className="flex h-14 w-full max-w-5xl items-center justify-between rounded-full border border-white/10 bg-[#020817]/60 backdrop-blur-2xl px-6 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="bg-primary/20 p-1.5 rounded-lg group-hover:bg-primary/30 transition-colors">
-            <ShieldCheck className="h-5 w-5 text-primary" />
+          <div className="bg-primary/20 p-1.5 rounded-full group-hover:bg-primary/30 transition-colors">
+            <ShieldCheck className="h-4 w-4 text-primary" />
           </div>
-          <span className="text-xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+          <span className="text-lg font-extrabold tracking-tighter text-foreground">
             @hort/nps
           </span>
         </Link>
