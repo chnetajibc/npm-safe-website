@@ -32,13 +32,6 @@ export default async function DocPage({ params }: { params: Promise<{ slug: stri
           {doc.content}
         </ReactMarkdown>
       </div>
-      
-      <div className="mt-16 pt-8 border-t border-border flex justify-between items-center text-sm text-muted">
-        <p>Was this page helpful?</p>
-        <button className="flex items-center hover:text-primary transition-colors">
-          Give Feedback <ArrowRight className="ml-1 h-4 w-4" />
-        </button>
-      </div>
     </article>
   );
 }

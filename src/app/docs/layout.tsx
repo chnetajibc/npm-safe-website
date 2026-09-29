@@ -11,10 +11,10 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
   }));
 
   return (
-    <div className="container mx-auto px-4 py-8 md:py-12 max-w-6xl flex flex-col md:flex-row gap-8 lg:gap-12">
+    <div className="container mx-auto px-4 py-8 md:py-12 max-w-[1400px] flex flex-col md:flex-row gap-8 lg:gap-16">
       {/* Sidebar Navigation */}
-      <aside className="w-full md:w-64 lg:w-72 flex-shrink-0">
-        <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto pr-4 scrollbar-hide">
+      <aside className="w-full md:w-64 lg:w-72 flex-shrink-0 md:border-r border-white/10 md:pr-8">
+        <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto scrollbar-hide">
           <SidebarNav docs={docLinks} />
         </div>
       </aside>

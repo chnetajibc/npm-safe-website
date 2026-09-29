@@ -2,114 +2,190 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Shield, Zap, Terminal, CheckCircle } from "lucide-react";
+import { Shield, Zap, Terminal, Lock, Activity, ChevronRight } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center overflow-hidden">
       {/* Hero Section */}
-      <section className="w-full relative overflow-hidden flex flex-col items-center justify-center py-24 md:py-32 bg-background">
-        <div className="absolute inset-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-background to-background" />
+      <section className="w-full relative min-h-[90vh] flex flex-col items-center justify-center pt-24 pb-32">
+        {/* Background Gradients */}
+        <div className="absolute top-0 inset-x-0 h-full w-full overflow-hidden -z-10 pointer-events-none">
+          <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-primary/20 blur-[120px]" />
+          <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-purple-500/10 blur-[100px]" />
+          <div className="absolute bottom-[-10%] left-[40%] w-[600px] h-[600px] rounded-full bg-blue-500/10 blur-[120px]" />
+        </div>
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="container mx-auto px-4 text-center z-10"
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="container mx-auto px-4 text-center z-10 max-w-5xl"
         >
-          <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary mb-8">
-            <Zap className="mr-2 h-4 w-4" /> v1.0.0 is now live
+          <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-8 backdrop-blur-md">
+            <span className="relative flex h-2 w-2 mr-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            nps v1.0.0 beta is live
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-            Keep your Node.js ecosystem <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-300">
-              Safe & Secure
+          
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-8 leading-[1.1]">
+            Secure your Node.js <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-400 to-blue-400">
+              ecosystem instantly.
             </span>
           </h1>
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-muted mb-10">
-            A fast, modular, and reliable tool to manage vulnerabilities, audit dependencies, and ensure your Node.js projects stay secure from day one.
+          
+          <p className="max-w-2xl mx-auto text-xl text-muted mb-12 font-medium">
+            The next-generation security suite for npm. Prevent supply chain attacks, automate vulnerability fixes, and verify package integrity at the speed of light.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
             <Link
               href="/docs"
-              className="px-8 py-3 rounded-md bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all shadow-[0_0_20px_rgba(59,130,246,0.4)]"
+              className="group flex items-center justify-center px-8 py-4 rounded-full bg-foreground text-background font-semibold hover:bg-foreground/90 transition-all text-lg shadow-[0_0_40px_rgba(255,255,255,0.1)]"
             >
-              Get Started
+              Start Auditing
+              <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link
-              href="https://github.com/netaji/npm-safe"
-              target="_blank"
-              className="px-8 py-3 rounded-md bg-transparent border border-border font-semibold hover:bg-border/50 transition-all"
-            >
-              View on GitHub
-            </Link>
+            <div className="flex items-center px-6 py-4 rounded-full bg-white/5 border border-white/10 text-foreground font-mono text-sm backdrop-blur-md">
+              <span className="text-muted mr-3">$</span> npm i -g @hort/nps
+            </div>
           </div>
+
+          {/* Terminal Mockup */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            className="w-full max-w-4xl mx-auto rounded-xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-2xl shadow-2xl overflow-hidden text-left"
+          >
+            <div className="flex items-center px-4 py-3 border-b border-white/10 bg-white/5">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+              </div>
+              <div className="mx-auto text-xs font-mono text-muted">bash - @hort/nps</div>
+            </div>
+            <div className="p-6 font-mono text-sm md:text-base leading-relaxed overflow-x-auto">
+              <div className="flex gap-4">
+                <span className="text-green-400">➜</span>
+                <span className="text-blue-400">~/project</span>
+                <span className="text-foreground">nps audit --fix</span>
+              </div>
+              <div className="mt-2 text-muted">
+                [1/3] Analyzing dependencies (428 packages)...
+              </div>
+              <div className="text-muted">
+                [2/3] Cross-referencing NVD and GitHub Advisories...
+              </div>
+              <div className="text-muted mb-2">
+                [3/3] Applying smart patches...
+              </div>
+              <div className="text-green-400 mb-2">
+                ✔ Fixed 14 vulnerabilities (3 High, 11 Moderate)
+              </div>
+              <div className="text-foreground border-l-2 border-green-500 pl-4 py-1 my-2 bg-green-500/10">
+                Supply chain verified. 0 tampering detected.
+              </div>
+              <div className="flex gap-4 mt-4">
+                <span className="text-green-400">➜</span>
+                <span className="text-blue-400">~/project</span>
+                <span className="w-2 h-5 bg-white/50 animate-pulse" />
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </section>
 
-      {/* Features Section */}
-      <section className="w-full py-20 bg-background border-t border-border/50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight mb-4">Why npm-safe?</h2>
-            <p className="text-muted max-w-xl mx-auto">Built from the ground up for modern developer workflows, ensuring safety without compromising on speed.</p>
+      {/* Bento Grid Features Section */}
+      <section className="w-full py-32 bg-background relative z-10">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Engineered for absolute security</h2>
+            <p className="text-xl text-muted max-w-2xl mx-auto">
+              Everything you need to sleep soundly at night, built into a single, blazing-fast CLI.
+            </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Shield,
-                title: "Deep Security Audit",
-                desc: "Automatically checks packages against the largest vulnerability databases.",
-              },
-              {
-                icon: Zap,
-                title: "Lightning Fast",
-                desc: "Optimized for performance. Scans massive monorepos in milliseconds.",
-              },
-              {
-                icon: Terminal,
-                title: "CLI & API First",
-                desc: "Integrate easily into your CI/CD pipelines with our intuitive CLI and APIs.",
-              },
-            ].map((feature, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.2 }}
-                className="p-6 rounded-xl border border-border bg-border/20 backdrop-blur-sm hover:border-primary/50 transition-colors"
-              >
-                <div className="h-12 w-12 rounded-lg bg-primary/20 flex items-center justify-center mb-4 text-primary">
-                  <feature.icon className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                <p className="text-muted">{feature.desc}</p>
-              </motion.div>
-            ))}
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Feature 1 - Large */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="md:col-span-2 p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors relative overflow-hidden group"
+            >
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -mr-20 -mt-20 transition-opacity group-hover:opacity-100 opacity-50" />
+              <Shield className="h-10 w-10 text-primary mb-6" />
+              <h3 className="text-3xl font-bold mb-4">Deep Vulnerability Scanning</h3>
+              <p className="text-muted text-lg max-w-md leading-relaxed">
+                We don't just check your direct dependencies. `nps` deeply analyzes transitive paths and resolves lockfile conflicts automatically, fixing vulnerabilities that native tools can't.
+              </p>
+            </motion.div>
+
+            {/* Feature 2 - Small */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.1 }}
+              className="p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors"
+            >
+              <Lock className="h-10 w-10 text-purple-400 mb-6" />
+              <h3 className="text-2xl font-bold mb-4">Tamper Proof</h3>
+              <p className="text-muted leading-relaxed">
+                Cryptographically verify package integrity against registry signatures to prevent supply chain attacks.
+              </p>
+            </motion.div>
+
+            {/* Feature 3 - Small */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.2 }}
+              className="p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors"
+            >
+              <Zap className="h-10 w-10 text-yellow-400 mb-6" />
+              <h3 className="text-2xl font-bold mb-4">Lightning Fast</h3>
+              <p className="text-muted leading-relaxed">
+                Built with performance in mind. Scan and fix massive enterprise monorepos in milliseconds, not minutes.
+              </p>
+            </motion.div>
+
+            {/* Feature 4 - Large */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.3 }}
+              className="md:col-span-2 p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors relative overflow-hidden group"
+            >
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] -ml-20 -mb-20 transition-opacity group-hover:opacity-100 opacity-50" />
+              <Activity className="h-10 w-10 text-blue-400 mb-6" />
+              <h3 className="text-3xl font-bold mb-4">CI/CD Native</h3>
+              <p className="text-muted text-lg max-w-md leading-relaxed">
+                Export audits to structured JSON. Enforce strict policies that automatically fail builds if unsigned or vulnerable code is pushed to production.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Command Section */}
-      <section className="w-full py-20 bg-background/50 border-t border-border/50">
-        <div className="container mx-auto px-4 flex flex-col items-center">
-          <h2 className="text-3xl font-bold tracking-tight mb-8">Ready to secure your app?</h2>
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            className="w-full max-w-2xl bg-[#0d1117] border border-[#30363d] rounded-lg p-6 font-mono text-sm shadow-xl flex items-center justify-between"
+      {/* CTA Section */}
+      <section className="w-full py-32 border-t border-white/10 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Ready to secure your apps?</h2>
+          <Link
+            href="/docs"
+            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all text-lg shadow-[0_0_30px_rgba(99,102,241,0.4)]"
           >
-            <div className="flex flex-col gap-2">
-              <div className="text-muted flex gap-2">
-                <span className="text-green-500">$</span> npm i -g @hort/nps
-              </div>
-              <div className="text-muted flex gap-2">
-                <span className="text-green-500">$</span> nps audit --fix
-              </div>
-            </div>
-            <CheckCircle className="text-green-500 h-6 w-6 opacity-50" />
-          </motion.div>
+            Read the Documentation
+          </Link>
         </div>
       </section>
     </div>
