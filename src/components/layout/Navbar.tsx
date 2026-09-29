@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { GitBranch, ShieldCheck } from 'lucide-react';
+import { GitBranch, ShieldCheck, Package } from 'lucide-react';
 
 export default function Navbar() {
   return (
@@ -22,11 +22,15 @@ export default function Navbar() {
           </Link>
         </nav>
         <div className="flex items-center gap-4">
-          <Link href="https://github.com/netaji/npm-safe" target="_blank" rel="noreferrer" className="text-muted hover:text-foreground transition-colors flex items-center gap-2">
+          <Link href="https://www.npmjs.com/package/@hort/nps" target="_blank" rel="noreferrer" className="text-muted hover:text-foreground transition-colors flex items-center gap-2" title="View on NPM">
+            <Package className="h-5 w-5" />
+            <span className="sr-only">NPM</span>
+          </Link>
+          <Link href="https://github.com/netaji/npm-safe" target="_blank" rel="noreferrer" className="text-muted hover:text-foreground transition-colors flex items-center gap-2" title="View on GitHub">
             <GitBranch className="h-5 w-5" />
             <span className="sr-only">GitHub</span>
           </Link>
-          <Link href="/docs" className="hidden sm:inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">
+          <Link href="/docs" className="hidden sm:inline-flex items-center justify-center rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">
             Get Started
           </Link>
         </div>
