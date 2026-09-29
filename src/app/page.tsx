@@ -47,7 +47,7 @@ export default function Home() {
               href="/docs"
               className="group flex items-center justify-center px-8 py-4 rounded-full bg-foreground text-background font-semibold hover:bg-foreground/90 transition-all text-lg shadow-[0_0_40px_rgba(255,255,255,0.1)] flex-shrink-0"
             >
-              Start Auditing
+              Read the Docs
               <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <CommandCopy command="npm i -g @hort/nps" />
