@@ -1,15 +1,35 @@
 "use client";
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { ChevronRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 type DocLink = { slug: string; title: string; category?: string };
 
 export default function SidebarNav({ docs }: { docs: DocLink[] }) {
-  const pathname = usePathname();
+  const [activeSlug, setActiveSlug] = useState<string>('');
+
+  useEffect(() => {
+    // Determine the active section on scroll
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSlug(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -80% 0px' }
+    );
+
+    docs.forEach((doc) => {
+      const el = document.getElementById(doc.slug);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [docs]);
 
   // Group docs by category (defaulting to 'Overview' if none provided)
   const groupedDocs = docs.reduce((acc, doc) => {
@@ -28,8 +48,8 @@ export default function SidebarNav({ docs }: { docs: DocLink[] }) {
           </h4>
           <ul className="flex flex-col gap-2 border-l border-border/50 ml-1">
             {items.map((doc) => {
-              const href = `/docs/${doc.slug}`;
-              const isActive = pathname === href;
+              const href = `/docs#${doc.slug}`;
+              const isActive = activeSlug === doc.slug;
 
               return (
                 <li key={doc.slug}>
