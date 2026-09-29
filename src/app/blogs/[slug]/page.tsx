@@ -1,6 +1,7 @@
 import { getPostBySlug, getAllPosts } from '@/lib/markdown';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
+import rehypeHighlight from 'rehype-highlight';
 import Link from 'next/link';
 import { ArrowLeft, Calendar } from 'lucide-react';
 
@@ -43,7 +44,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </header>
 
       <div className="prose prose-invert prose-lg max-w-none prose-headings:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
-        <ReactMarkdown>{post.content}</ReactMarkdown>
+        <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{post.content}</ReactMarkdown>
       </div>
     </article>
   );
