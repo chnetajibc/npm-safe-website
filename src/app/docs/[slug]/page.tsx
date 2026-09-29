@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import { ArrowRight } from 'lucide-react';
+import PreBlock from '@/components/mdx/PreBlock';
 
 export async function generateStaticParams() {
   const docs = getAllPosts('docs');
@@ -21,8 +22,15 @@ export default async function DocPage({ params }: { params: Promise<{ slug: stri
 
   return (
     <article className="max-w-3xl">
-      <div className="prose prose-invert prose-lg max-w-none prose-headings:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-pre:border prose-pre:border-border prose-pre:bg-[#0d1117]">
-        <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{doc.content}</ReactMarkdown>
+      <div className="prose prose-invert prose-slate prose-lg max-w-none prose-headings:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
+        <ReactMarkdown 
+          rehypePlugins={[rehypeHighlight]}
+          components={{
+            pre: PreBlock
+          }}
+        >
+          {doc.content}
+        </ReactMarkdown>
       </div>
       
       <div className="mt-16 pt-8 border-t border-border flex justify-between items-center text-sm text-muted">

@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import Link from 'next/link';
 import { ArrowLeft, Calendar } from 'lucide-react';
+import PreBlock from '@/components/mdx/PreBlock';
 
 export async function generateStaticParams() {
   const posts = getAllPosts('blogs');
@@ -43,8 +44,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </header>
 
-      <div className="prose prose-invert prose-lg max-w-none prose-headings:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
-        <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{post.content}</ReactMarkdown>
+      <div className="prose prose-invert prose-slate prose-lg max-w-none prose-headings:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
+        <ReactMarkdown 
+          rehypePlugins={[rehypeHighlight]}
+          components={{
+            pre: PreBlock
+          }}
+        >
+          {post.content}
+        </ReactMarkdown>
       </div>
     </article>
   );
