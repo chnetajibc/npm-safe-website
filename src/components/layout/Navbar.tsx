@@ -9,9 +9,14 @@ export default function Navbar() {
           <div className="bg-primary/20 p-1.5 rounded-full group-hover:bg-primary/30 transition-colors">
             <ShieldCheck className="h-4 w-4 text-primary" />
           </div>
-          <span className="text-lg font-extrabold tracking-tighter text-foreground">
-            @hort/nps
-          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-lg font-extrabold tracking-tighter text-foreground">
+              @hort/nps
+            </span>
+            <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+              v1.0.0-beta
+            </span>
+          </div>
         </Link>
         <nav className="hidden md:flex gap-8">
           <Link href="/docs" className="text-sm font-medium text-muted hover:text-foreground transition-colors">
