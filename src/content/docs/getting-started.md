@@ -1,6 +1,7 @@
 ---
 title: "Getting Started"
 order: 1
+category: "Overview"
 ---
 
 # Getting Started with @hort/nps

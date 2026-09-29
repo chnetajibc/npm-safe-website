@@ -1,6 +1,7 @@
 ---
 title: "CLI Reference"
 order: 2
+category: "Core Guides"
 ---
 
 # CLI Reference

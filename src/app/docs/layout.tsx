@@ -1,26 +1,21 @@
-import Link from 'next/link';
 import { getAllPosts } from '@/lib/markdown';
+import SidebarNav from '@/components/layout/SidebarNav';
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   const docs = getAllPosts('docs');
+  
+  const docLinks = docs.map(doc => ({
+    slug: doc.slug,
+    title: doc.meta.title,
+    category: doc.meta.category
+  }));
 
   return (
-    <div className="container mx-auto px-4 py-8 md:py-12 max-w-6xl flex flex-col md:flex-row gap-8">
+    <div className="container mx-auto px-4 py-8 md:py-12 max-w-6xl flex flex-col md:flex-row gap-8 lg:gap-12">
       {/* Sidebar Navigation */}
-      <aside className="w-full md:w-64 flex-shrink-0">
-        <div className="sticky top-24">
-          <h3 className="font-semibold text-lg mb-4 text-foreground">Documentation</h3>
-          <nav className="flex flex-col gap-2">
-            {docs.map((doc) => (
-              <Link
-                key={doc.slug}
-                href={`/docs/${doc.slug}`}
-                className="text-muted hover:text-primary transition-colors text-sm font-medium py-1"
-              >
-                {doc.meta.title}
-              </Link>
-            ))}
-          </nav>
+      <aside className="w-full md:w-64 lg:w-72 flex-shrink-0">
+        <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto pr-4 scrollbar-hide">
+          <SidebarNav docs={docLinks} />
         </div>
       </aside>
 
