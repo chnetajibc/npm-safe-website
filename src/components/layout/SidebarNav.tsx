@@ -1,6 +1,5 @@
 "use client";
 
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -53,11 +52,21 @@ export default function SidebarNav({ docs }: { docs: DocLink[] }) {
 
               return (
                 <li key={doc.slug}>
-                  <Link
+                  <a
                     href={href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.getElementById(doc.slug);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                        // Update URL without a full navigation
+                        window.history.pushState(null, '', href);
+                        setActiveSlug(doc.slug);
+                      }
+                    }}
                     className={twMerge(
                       clsx(
-                        "relative flex items-center pl-4 py-1.5 text-sm transition-colors",
+                        "relative flex items-center pl-4 py-1.5 text-sm transition-colors cursor-pointer",
                         isActive
                           ? "text-primary font-medium"
                           : "text-muted hover:text-foreground"
@@ -68,7 +77,7 @@ export default function SidebarNav({ docs }: { docs: DocLink[] }) {
                       <span className="absolute left-[-1px] top-0 bottom-0 w-[2px] bg-primary rounded-r" />
                     )}
                     {doc.title}
-                  </Link>
+                  </a>
                 </li>
               );
             })}
