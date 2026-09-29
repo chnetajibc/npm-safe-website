@@ -6,6 +6,7 @@
   --background: #020817;
   --foreground: #f8fafc;
   --primary: #6366f1;
+  --secondary: #d946ef;
   --muted: #64748b;
   --border: #1e293b;
 }
@@ -14,6 +15,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --color-muted: var(--muted);
   --color-border: var(--border);
   --font-sans: var(--font-geist-sans);

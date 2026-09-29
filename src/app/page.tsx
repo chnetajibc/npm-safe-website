@@ -13,7 +13,7 @@ export default function Home() {
         {/* Background Gradients */}
         <div className="absolute top-0 inset-x-0 h-full w-full overflow-hidden -z-10 pointer-events-none">
           <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-primary/20 blur-[120px]" />
-          <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-purple-500/10 blur-[100px]" />
+          <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-secondary/15 blur-[100px]" />
           <div className="absolute bottom-[-10%] left-[40%] w-[600px] h-[600px] rounded-full bg-blue-500/10 blur-[120px]" />
         </div>
 
@@ -33,7 +33,7 @@ export default function Home() {
           
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]">
             Secure your Node.js <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigo-400 to-blue-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-blue-400">
               ecosystem instantly.
             </span>
           </h1>
