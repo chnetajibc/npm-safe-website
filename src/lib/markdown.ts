@@ -32,6 +32,11 @@ export function getAllPosts(folder: string) {
     .filter((slug) => slug.endsWith('.md'))
     .map((slug) => getPostBySlug(slug, folder))
     .filter((post) => post !== null)
-    .sort((post1, post2) => (post1.meta.date > post2.meta.date ? -1 : 1));
+    .sort((post1, post2) => {
+      if (post1.meta.order !== undefined && post2.meta.order !== undefined) {
+        return post1.meta.order - post2.meta.order;
+      }
+      return post1.meta.date > post2.meta.date ? -1 : 1;
+    });
   return posts;
 }
