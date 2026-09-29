@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ShieldCheck, Heart } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -13,18 +13,6 @@ export default function Footer() {
           <p className="text-xs text-muted text-center md:text-left">
             &copy; {new Date().getFullYear()} @hort/nps. MIT Licensed.
           </p>
-        </div>
-        
-        <div className="flex items-center gap-1.5 text-xs text-muted">
-          <span>Built with</span>
-          <Heart className="h-3 w-3 text-red-500/70 fill-red-500/70" />
-          <span>by</span>
-          <a 
-            href="mailto:chnetajibc@gmail.com" 
-            className="text-foreground font-medium hover:text-primary transition-colors"
-          >
-            CH Netaji Bhadraiahnath Chowdary
-          </a>
         </div>
       </div>
     </footer>

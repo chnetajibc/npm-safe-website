@@ -173,6 +173,46 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Developers Section */}
+      <section className="w-full py-32 bg-background border-t border-white/5 relative z-10">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Meet the Creators</h2>
+            <p className="text-muted text-lg">Built by the open-source community, for the open-source community.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            {/* Netaji */}
+            <div className="flex flex-col items-center p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors text-center group">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-primary to-secondary p-1 mb-6 shadow-xl group-hover:scale-105 transition-transform">
+                <div className="w-full h-full rounded-full bg-[#020817] flex items-center justify-center text-2xl font-bold">
+                  CH
+                </div>
+              </div>
+              <h3 className="text-xl font-bold mb-1">CH Netaji Bhadraiahnath Chowdary</h3>
+              <p className="text-muted mb-4">Core Contributor</p>
+              <a href="mailto:chnetajibc@gmail.com" className="text-sm font-medium text-primary hover:text-secondary transition-colors">
+                chnetajibc@gmail.com
+              </a>
+            </div>
+
+            {/* Abhishek */}
+            <div className="flex flex-col items-center p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors text-center group">
+              <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-blue-500 to-emerald-400 p-1 mb-6 shadow-xl group-hover:scale-105 transition-transform">
+                <div className="w-full h-full rounded-full bg-[#020817] flex items-center justify-center text-2xl font-bold">
+                  AT
+                </div>
+              </div>
+              <h3 className="text-xl font-bold mb-1">Abhishek Tumula</h3>
+              <p className="text-muted mb-4">Core Contributor</p>
+              <a href="mailto:abhishektumula@gmail.com" className="text-sm font-medium text-blue-400 hover:text-emerald-400 transition-colors">
+                abhishektumula@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
