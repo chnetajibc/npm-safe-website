@@ -173,20 +173,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="w-full py-32 border-t border-white/10 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">Ready to secure your apps?</h2>
-          <Link
-            href="/docs"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all text-lg shadow-[0_0_30px_rgba(99,102,241,0.4)]"
-          >
-            Read the Documentation
-          </Link>
-        </div>
-      </section>
     </div>
   );
 }
