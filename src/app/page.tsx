@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Shield, Zap, Terminal, Lock, Activity, ChevronRight } from "lucide-react";
+import CommandCopy from "@/components/ui/CommandCopy";
 
 export default function Home() {
   return (
@@ -44,14 +45,12 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
             <Link
               href="/docs"
-              className="group flex items-center justify-center px-8 py-4 rounded-full bg-foreground text-background font-semibold hover:bg-foreground/90 transition-all text-lg shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+              className="group flex items-center justify-center px-8 py-4 rounded-full bg-foreground text-background font-semibold hover:bg-foreground/90 transition-all text-lg shadow-[0_0_40px_rgba(255,255,255,0.1)] flex-shrink-0"
             >
               Start Auditing
               <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <div className="flex items-center px-6 py-4 rounded-full bg-white/5 border border-white/10 text-foreground font-mono text-sm backdrop-blur-md">
-              <span className="text-muted mr-3">$</span> npm i -g @hort/nps
-            </div>
+            <CommandCopy command="npm i -g @hort/nps" />
           </div>
 
           {/* Terminal Mockup */}
