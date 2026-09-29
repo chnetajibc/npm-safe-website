@@ -25,9 +25,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col relative bg-background text-foreground">
+        {/* Subtle dot pattern background */}
+        <div className="fixed inset-0 z-[-1] bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-30"></div>
+        <div className="fixed inset-0 z-[-1] bg-gradient-to-t from-background via-transparent to-background"></div>
+        
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 z-0">{children}</main>
         <Footer />
       </body>
     </html>
