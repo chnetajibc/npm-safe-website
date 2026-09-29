@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center overflow-hidden">
       {/* Hero Section */}
-      <section className="w-full relative min-h-[90vh] flex flex-col items-center justify-center pt-24 pb-32">
+      <section className="w-full relative min-h-[80vh] flex flex-col items-center justify-center pt-12 pb-16 md:pt-24 md:pb-24">
         {/* Background Gradients */}
         <div className="absolute top-0 inset-x-0 h-full w-full overflow-hidden -z-10 pointer-events-none">
           <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-primary/20 blur-[120px]" />
@@ -92,10 +92,10 @@ export default function Home() {
       </section>
 
       {/* Bento Grid Features Section */}
-      <section className="w-full py-32 bg-background relative z-10">
+      <section className="w-full py-16 md:py-24 bg-background relative z-10">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Engineered for absolute security</h2>
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 md:mb-6">Engineered for absolute security</h2>
             <p className="text-xl text-muted max-w-2xl mx-auto">
               Everything you need to sleep soundly at night, built into a single, blazing-fast CLI.
             </p>
@@ -167,9 +167,9 @@ export default function Home() {
       </section>
 
       {/* Developers Section */}
-      <section className="w-full py-32 bg-background border-t border-white/5 relative z-10">
+      <section className="w-full py-16 md:py-24 bg-background border-t border-white/5 relative z-10">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Meet the Creators</h2>
             <p className="text-muted text-lg">Built by the open-source community, for the open-source community.</p>
           </div>
