@@ -176,32 +176,30 @@ export default function Home() {
           
           <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {/* Netaji */}
-            <div className="flex flex-col items-center p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors text-center group">
+            <a href="https://github.com/netaji" target="_blank" rel="noreferrer" className="flex flex-col items-center p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-primary/50 transition-all text-center group relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-primary to-secondary p-1 mb-6 shadow-xl group-hover:scale-105 transition-transform">
-                <div className="w-full h-full rounded-full bg-[#020817] flex items-center justify-center text-2xl font-bold">
-                  CH
-                </div>
+                <img src="https://github.com/netaji.png" alt="Netaji" className="w-full h-full rounded-full object-cover" />
               </div>
-              <h3 className="text-xl font-bold mb-1">CH Netaji Bhadraiahnath Chowdary</h3>
+              <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">CH Netaji Bhadraiahnath Chowdary</h3>
               <p className="text-muted mb-4">Core Contributor</p>
-              <a href="mailto:chnetajibc@gmail.com" className="text-sm font-medium text-primary hover:text-secondary transition-colors">
-                chnetajibc@gmail.com
-              </a>
-            </div>
+              <span className="text-sm font-medium text-primary hover:text-secondary transition-colors">
+                @netaji
+              </span>
+            </a>
 
             {/* Abhishek */}
-            <div className="flex flex-col items-center p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors text-center group">
+            <a href="https://github.com/abhishektumula" target="_blank" rel="noreferrer" className="flex flex-col items-center p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-emerald-500/50 transition-all text-center group relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/20 rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-blue-500 to-emerald-400 p-1 mb-6 shadow-xl group-hover:scale-105 transition-transform">
-                <div className="w-full h-full rounded-full bg-[#020817] flex items-center justify-center text-2xl font-bold">
-                  AT
-                </div>
+                <img src="https://github.com/abhishektumula.png" alt="Abhishek" className="w-full h-full rounded-full object-cover" />
               </div>
-              <h3 className="text-xl font-bold mb-1">Abhishek Tumula</h3>
+              <h3 className="text-xl font-bold mb-1 group-hover:text-emerald-400 transition-colors">Abhishek Tumula</h3>
               <p className="text-muted mb-4">Core Contributor</p>
-              <a href="mailto:abhishektumula@gmail.com" className="text-sm font-medium text-blue-400 hover:text-emerald-400 transition-colors">
-                abhishektumula@gmail.com
-              </a>
-            </div>
+              <span className="text-sm font-medium text-blue-400 hover:text-emerald-400 transition-colors">
+                @abhishektumula
+              </span>
+            </a>
           </div>
         </div>
       </section>
