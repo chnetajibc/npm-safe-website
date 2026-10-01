@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useSyncExternalStore } from "react";
-import { Moon, Sun } from "lucide-react";
 
 type Theme = "light" | "dark";
 
-function getThemeSnapshot(): Theme {
+function getSavedTheme(): Theme | null {
   try {
     const savedTheme = window.localStorage.getItem("npm-safe-theme");
     if (savedTheme === "light" || savedTheme === "dark") return savedTheme;
@@ -13,7 +12,11 @@ function getThemeSnapshot(): Theme {
     // Fall back to the operating system preference when storage is unavailable.
   }
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return null;
+}
+
+function getThemeSnapshot(): Theme {
+  return getSavedTheme() ?? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 }
 
 function getServerSnapshot(): Theme {
@@ -49,7 +52,9 @@ export default function ThemeToggle() {
   const theme = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, getServerSnapshot);
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme;
+    const savedTheme = getSavedTheme();
+    if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+    else delete document.documentElement.dataset.theme;
     document.documentElement.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
@@ -64,7 +69,16 @@ export default function ThemeToggle() {
       aria-pressed={theme === "dark"}
       title={`Switch to ${nextTheme} mode`}
     >
-      {theme === "dark" ? <Sun size={16} strokeWidth={1.8} /> : <Moon size={16} strokeWidth={1.8} />}
+      {theme === "dark" ? (
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364-.707.707M6.343 17.657l-.707.707m12.728 0-.707-.707M6.343 6.343l-.707-.707" />
+          <circle cx="12" cy="12" r="4" />
+        </svg>
+      ) : (
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.003.803.401Z" />
+        </svg>
+      )}
     </button>
   );
 }

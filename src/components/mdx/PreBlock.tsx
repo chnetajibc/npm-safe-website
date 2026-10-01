@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, type ComponentProps } from "react";
 import { Check, Copy } from "lucide-react";
 
-export default function PreBlock({ children, ...props }: any) {
+type PreBlockProps = ComponentProps<"pre"> & { node?: unknown };
+
+export default function PreBlock({ children, ...props }: PreBlockProps) {
   const [copied, setCopied] = useState(false);
   const preRef = useRef<HTMLPreElement>(null);
 

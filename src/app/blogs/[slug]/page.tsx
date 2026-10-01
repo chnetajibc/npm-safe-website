@@ -1,59 +1,91 @@
-import { getPostBySlug, getAllPosts } from '@/lib/markdown';
+import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
-import Link from 'next/link';
-import { ArrowLeft, Calendar } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Clock3 } from 'lucide-react';
 import PreBlock from '@/components/mdx/PreBlock';
+import { getAllPosts, getPostBySlug } from '@/lib/markdown';
+
+type BlogRouteProps = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  const posts = getAllPosts('blogs');
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  return getAllPosts('blogs').map((post) => ({ slug: post.slug }));
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params;
-  const post = getPostBySlug(resolvedParams.slug, 'blogs');
+export async function generateMetadata({ params }: BlogRouteProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug, 'blogs');
+  if (!post) return {};
 
-  if (!post) {
-    notFound();
-  }
+  return {
+    title: post.meta.title,
+    description: post.meta.excerpt,
+    openGraph: {
+      title: post.meta.title,
+      description: post.meta.excerpt,
+      type: 'article',
+      publishedTime: post.meta.date,
+    },
+  };
+}
+
+function formatDate(date: string) {
+  return new Date(`${date}T12:00:00`).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
+
+export default async function BlogPostPage({ params }: BlogRouteProps) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug, 'blogs');
+  if (!post) notFound();
 
   return (
-    <article className="container mx-auto px-4 py-16 md:py-24 max-w-3xl">
-      <Link href="/blogs" className="inline-flex items-center text-sm font-medium text-muted hover:text-primary transition-colors mb-8">
-        <ArrowLeft className="mr-2 h-4 w-4" />
-        Back to Blogs
-      </Link>
-      
-      <header className="mb-10 border-b border-border pb-10">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-          {post.meta.title}
-        </h1>
-        <div className="flex items-center text-muted gap-2">
-          <Calendar className="h-4 w-4" />
-          <time dateTime={post.meta.date}>
-            {new Date(post.meta.date).toLocaleDateString('en-US', {
-              month: 'long',
-              day: 'numeric',
-              year: 'numeric'
-            })}
-          </time>
+    <main className="journal-article-page">
+      <div className="journal-article-topline">
+        <Link href="/blogs"><ArrowLeft size={15} /> All notes</Link>
+        <span>FIELD NOTES <i>·</i> 01</span>
+      </div>
+
+      <header className="journal-article-header">
+        <p className="journal-article-category">{post.meta.category ?? 'Product notes'}</p>
+        <h1>{post.meta.title}</h1>
+        <p className="journal-article-excerpt">{post.meta.excerpt}</p>
+        <div className="journal-article-byline">
+          <span className="journal-author-mark">N</span>
+          <span>From the nps project</span>
+          <span className="journal-byline-divider" />
+          <time dateTime={post.meta.date}>{formatDate(post.meta.date)}</time>
+          {post.meta.readTime && <><span className="journal-byline-divider" /><span><Clock3 size={13} /> {post.meta.readTime}</span></>}
         </div>
       </header>
 
-      <div className="prose prose-slate prose-lg max-w-none prose-headings:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
-        <ReactMarkdown 
+      <div className="journal-article-rule"><span>nps<span>.</span></span></div>
+
+      <article className="journal-prose prose prose-lg max-w-none">
+        <ReactMarkdown
           rehypePlugins={[rehypeHighlight]}
           components={{
-            pre: PreBlock
+            pre: PreBlock,
+            a: ({ href, children, ...props }) => (
+              <a href={href} {...props}>
+                {children}
+                {href?.startsWith('http') && <ArrowUpRight size={13} aria-hidden="true" />}
+              </a>
+            ),
           }}
         >
           {post.content}
         </ReactMarkdown>
-      </div>
-    </article>
+      </article>
+
+      <footer className="journal-article-footer">
+        <div><span>KEEP GOING</span><p>See how the install flow works in your own project.</p></div>
+        <Link href="/docs">Read the quick start <ArrowRight size={15} /></Link>
+      </footer>
+    </main>
   );
 }

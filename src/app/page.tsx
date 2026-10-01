@@ -3,15 +3,12 @@ import {
   ArrowDownRight,
   ArrowRight,
   ArrowUpRight,
-  BadgeCheck,
-  Bug,
   Boxes,
-  Braces,
   CircleCheck,
   GitBranch,
-  LockKeyhole,
+  Gauge,
   PackageCheck,
-  ScanSearch,
+  Search,
   ShieldCheck,
   Terminal,
 } from "lucide-react";
@@ -20,55 +17,55 @@ import CommandCopy from "@/components/ui/CommandCopy";
 const features = [
   {
     number: "01",
-    icon: ScanSearch,
-    title: "Trace the whole dependency tree",
+    icon: Search,
+    title: "See the package behind the name",
     description:
-      "Audit direct and transitive packages, cross-reference vulnerability sources, and see which dependency path brought an issue into your project.",
-    command: "nps audit",
+      "Review the version, description, author, and source repository before the package is added to your project.",
+    command: "nps install express",
     className: "feature-audit",
   },
   {
     number: "02",
-    icon: Bug,
-    title: "Move from finding to fixing",
+    icon: Boxes,
+    title: "Understand the dependency footprint",
     description:
-      "Use the automatic fix flow for compatible updates and lockfile patches, with semver in mind.",
-    command: "nps audit --fix",
+      "See direct, transitive, and total dependency counts while you are deciding whether to add another dependency.",
+    command: "nps install express --all",
     className: "feature-fix",
   },
   {
     number: "03",
-    icon: LockKeyhole,
-    title: "Check package integrity",
+    icon: Gauge,
+    title: "Treat the health score as a signal",
     description:
-      "Verify installed package contents against npm registry signatures and look for unexpected changes after installation.",
-    command: "nps verify --strict",
+      "See the available Snyk score and category breakdown. It adds context; it is not a safety verdict.",
+    command: "nps install express --json",
     className: "feature-integrity",
   },
   {
     number: "04",
-    icon: Braces,
-    title: "Review major upgrades",
+    icon: CircleCheck,
+    title: "Preview before changing anything",
     description:
-      "When a safe patch is not enough, inspect breaking changes and choose major-version upgrades in an interactive workflow.",
-    command: "nps update",
+      "Run a dry run to inspect package information without installing. Otherwise, the default prompt is no.",
+    command: "nps install express --dry-run",
     className: "feature-upgrade",
   },
   {
     number: "05",
     icon: Boxes,
-    title: "Bring security into CI",
+    title: "Stay with your package manager",
     description:
-      "Export audit data as JSON for your reporting tools, and use strict verification to fail a pipeline on signature mismatches.",
-    command: "nps audit --json",
+      "Use nps with npm, pnpm, bun, or yarn. It detects the project manager or lets you choose with --pm.",
+    command: "nps install express",
     className: "feature-ci",
   },
 ];
 
 const steps = [
-  { number: "1", title: "Install", detail: "Add the CLI globally with npm." },
-  { number: "2", title: "Audit", detail: "Run it in your Node.js project." },
-  { number: "3", title: "Act", detail: "Fix, verify, or wire checks into CI." },
+  { number: "1", title: "Install nps", detail: "Add the CLI with the package manager you prefer." },
+  { number: "2", title: "Preview a package", detail: "See its information without installing anything." },
+  { number: "3", title: "Choose what happens", detail: "Continue with your manager, or stop and investigate." },
 ];
 
 export default function Home() {
@@ -78,62 +75,62 @@ export default function Home() {
         <div className="hero-grid" aria-hidden="true" />
         <div className="hero-wrap">
           <div className="hero-copy">
-            <p className="eyebrow"><span className="eyebrow-mark" /> npm security, in your terminal</p>
-            <h1>Know what’s in your tree.<br /><span>Keep it safe.</span></h1>
+            <p className="eyebrow"><span className="eyebrow-mark" /> package context, before install</p>
+            <h1>Look before<br />you <span>install.</span></h1>
             <p className="hero-description">
-              Find vulnerable npm dependencies, understand where they came from, and take action without leaving your workflow.
+              See package details, dependency counts, and an available health signal before adding a new dependency. Keep your usual package manager and decide whether to continue.
             </p>
             <div className="hero-actions">
-              <Link href="/docs#getting-started" className="button-primary">
+              <Link href="/docs/getting-started" className="button-primary">
                 Get started <ArrowRight size={17} />
               </Link>
-              <Link href="https://github.com/netaji/npm-safe" className="button-quiet" target="_blank" rel="noreferrer">
+              <Link href="https://github.com/abhishektumula/npm-safe" className="button-quiet" target="_blank" rel="noreferrer">
                 Explore on GitHub <ArrowUpRight size={16} />
               </Link>
             </div>
             <div className="hero-proof">
               <span><CircleCheck size={15} /> Open source</span>
-              <span><Terminal size={15} /> Works from your CLI</span>
-              <span><PackageCheck size={15} /> Built for npm projects</span>
+              <span><Terminal size={15} /> A small CLI step</span>
+              <span><PackageCheck size={15} /> npm · pnpm · bun</span>
             </div>
           </div>
 
-          <div className="hero-terminal" aria-label="Example npm-safe commands">
+          <div className="hero-terminal" aria-label="Example nps package review">
             <div className="terminal-topbar">
               <div className="terminal-lights" aria-hidden="true"><i /><i /><i /></div>
-              <span>your-project <span className="terminal-path">/ security</span></span>
-              <span className="terminal-label">SHELL</span>
+              <span>before-install <span className="terminal-path">/ package review</span></span>
+              <span className="terminal-label">NPS</span>
             </div>
             <div className="terminal-body">
-              <p className="terminal-kicker">Start with an audit</p>
-              <div className="terminal-command"><span>$</span> nps audit</div>
+              <p className="terminal-kicker">Ask for a package summary</p>
+              <div className="terminal-command"><span>$</span> nps install express</div>
               <div className="terminal-rule" />
-              <p className="terminal-kicker">Apply compatible fixes</p>
-              <div className="terminal-command"><span>$</span> nps audit --fix</div>
+              <p className="terminal-kicker">Inspect without installing</p>
+              <div className="terminal-command"><span>$</span> nps install express --dry-run</div>
               <div className="terminal-rule" />
-              <p className="terminal-kicker">Verify installed packages</p>
-              <div className="terminal-command"><span>$</span> nps verify</div>
-              <div className="terminal-footer"><BadgeCheck size={15} /> One focused toolkit for npm project security</div>
+              <p className="terminal-kicker">Then choose what happens</p>
+              <div className="terminal-command"><span>?</span> Continue with install? [y/N]</div>
+              <div className="terminal-footer"><PackageCheck size={15} /> Your package manager installs only after you confirm</div>
             </div>
             <div className="terminal-stamp" aria-hidden="true"><ShieldCheck size={20} /></div>
           </div>
         </div>
-        <div className="hero-bottomline"><span>DEPENDENCY HEALTH</span><span>01 — 05</span></div>
+          <div className="hero-bottomline"><span>PACKAGE CONTEXT BEFORE INSTALL</span><span>V0.1</span></div>
       </section>
 
       <section className="intro-strip" aria-label="Product summary">
         <div className="intro-mark"><ShieldCheck size={24} /></div>
-        <p><strong>Security work should fit the way you build.</strong> Audit, fix, verify, and keep moving.</p>
-        <Link href="/docs#features" className="text-link">See how it works <ArrowDownRight size={15} /></Link>
+        <p><strong>One extra look at the point of decision.</strong> Package context first; your call after.</p>
+        <Link href="/docs/overview" className="text-link">See how it works <ArrowDownRight size={15} /></Link>
       </section>
 
       <section className="features-section" id="features">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">A practical security toolkit</p>
-            <h2>From dependency<br className="mobile-break" /> <span>risk to resolution.</span></h2>
+            <p className="eyebrow">The first useful slice</p>
+            <h2>Useful context.<br className="mobile-break" /> <span>Your decision.</span></h2>
           </div>
-          <p className="section-summary">Get a clearer picture of your npm dependencies, then choose the right next step for your project.</p>
+          <p className="section-summary">nps is an early install wrapper, not a security verdict. It brings a few public package details together before the install starts.</p>
         </div>
 
         <div className="feature-grid">
@@ -147,42 +144,42 @@ export default function Home() {
               <div className={`feature-visual visual-${number}`} aria-hidden="true">
                 {number === "01" && (
                   <div className="dependency-map">
-                    <span className="graph-root">your app</span>
+                    <span className="graph-root">express</span>
                     <span className="graph-link graph-link-one" />
                     <span className="graph-link graph-link-two" />
-                    <span className="graph-node graph-direct"><i />direct dependency</span>
-                    <span className="graph-node graph-transitive"><i />transitive package</span>
-                    <span className="graph-tag">advisory path</span>
+                    <span className="graph-node graph-direct"><i />author · source</span>
+                    <span className="graph-node graph-transitive"><i />version · description</span>
+                    <span className="graph-tag">package details</span>
                   </div>
                 )}
                 {number === "02" && (
                   <div className="version-compare">
-                    <div><small>INSTALLED</small><strong>Current version</strong></div>
+                    <div><small>DIRECT</small><strong>1 dependency</strong></div>
                     <ArrowRight size={17} />
-                    <div className="version-target"><small>COMPATIBLE UPDATE</small><strong>Semver-safe fix</strong></div>
+                    <div className="version-target"><small>TOTAL</small><strong>Tree overview</strong></div>
                   </div>
                 )}
                 {number === "03" && (
                   <div className="integrity-compare">
-                    <span><PackageCheck size={17} /> Installed package</span>
+                    <span><Gauge size={17} /> Snyk health signal</span>
                     <span className="integrity-connector" />
-                    <span><ShieldCheck size={17} /> Registry signature</span>
+                    <span><CircleCheck size={17} /> One input to your review</span>
                   </div>
                 )}
                 {number === "04" && (
                   <div className="upgrade-panel">
-                    <div className="upgrade-panel-title"><Terminal size={13} /> UPGRADE REVIEW</div>
-                    <div><span className="upgrade-check">✓</span> Inspect changed APIs</div>
-                    <div><span className="upgrade-choice">↳</span> Choose a major update</div>
+                    <div className="upgrade-panel-title"><Terminal size={13} /> SAFE PREVIEW</div>
+                    <div><span className="upgrade-check">✓</span> Show package information</div>
+                    <div><span className="upgrade-choice">↳</span> No project changes</div>
                   </div>
                 )}
                 {number === "05" && (
                   <div className="pipeline-visual">
-                    <span className="pipeline-command">nps audit --json</span>
+                    <span className="pipeline-command">nps install express</span>
                     <ArrowRight size={18} />
-                    <span className="pipeline-result"><Braces size={17} /> structured JSON</span>
+                    <span className="pipeline-result"><PackageCheck size={17} /> package summary</span>
                     <ArrowRight size={18} />
-                    <span className="pipeline-result">CI workflow</span>
+                    <span className="pipeline-result">[y/N]</span>
                   </div>
                 )}
               </div>
@@ -194,9 +191,9 @@ export default function Home() {
 
       <section className="workflow-section">
         <div className="workflow-aside">
-          <p className="eyebrow">A shorter path to safer releases</p>
-          <h2>Security checks<br />that fit <span>your flow.</span></h2>
-          <p>Start locally, learn what needs attention, and carry the same checks into your delivery pipeline.</p>
+          <p className="eyebrow">No lockfile migration</p>
+          <h2>Keep your<br /><span>usual tools.</span></h2>
+          <p>nps checks your project for its package manager, or you can choose it directly. It adds context before the install and leaves the final choice with you.</p>
           <Link href="/docs" className="text-link">Browse the documentation <ArrowRight size={15} /></Link>
         </div>
         <div className="workflow-steps">
@@ -205,8 +202,8 @@ export default function Home() {
               <span className="step-number">{step.number}</span>
               <div><h3>{step.title}</h3><p>{step.detail}</p></div>
               {step.number === "1" && <code>npm install -g @hort/nps</code>}
-              {step.number === "2" && <code>nps audit</code>}
-              {step.number === "3" && <code>nps verify --strict</code>}
+              {step.number === "2" && <code>nps install express --dry-run</code>}
+              {step.number === "3" && <code>nps install express</code>}
             </div>
           ))}
         </div>
@@ -215,20 +212,20 @@ export default function Home() {
       <section className="install-section" id="install">
         <div className="install-copy">
           <p className="eyebrow">Ready when you are</p>
-          <h2>Make your next<br />install a <span>safer one.</span></h2>
-          <p>Install @hort/nps, run your first audit, and explore the commands from the getting started guide.</p>
-          <Link href="/docs#getting-started" className="button-light">Read the getting started guide <ArrowRight size={16} /></Link>
+          <h2>Take a look<br />before you <span>install.</span></h2>
+          <p>Install the nps command, preview package information, then let it hand off to npm, pnpm, bun, or yarn when you confirm.</p>
+          <Link href="/docs/getting-started" className="button-light">Read the getting started guide <ArrowRight size={16} /></Link>
         </div>
         <div className="install-code">
-          <div className="install-code-label"><Terminal size={15} /> TERMINAL</div>
-          <CommandCopy command="npm install -g @hort/nps" className="install-copy-command" />
-          <p>Then run <code>nps audit</code> inside your project.</p>
+          <div className="install-code-label"><Terminal size={15} /> INSTALL THE CLI</div>
+          <CommandCopy command="npm install --global @hort/nps" className="install-copy-command" />
+          <p>Then preview a package with <code>nps install express --dry-run</code>.</p>
         </div>
         <div className="install-decoration" aria-hidden="true">nps<span>.</span></div>
       </section>
 
       <section className="more-section">
-        <div><GitBranch size={18} /><span>Open source. Made for the npm ecosystem.</span></div>
+        <div><GitBranch size={18} /><span>Open source. Package context before install.</span></div>
         <Link href="https://www.npmjs.com/package/@hort/nps" target="_blank" rel="noreferrer">View @hort/nps on npm <ArrowUpRight size={15} /></Link>
       </section>
     </div>

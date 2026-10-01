@@ -18,28 +18,27 @@ const googleSansCode = Google_Sans_Code({
   variable: "--font-google-sans-code",
   subsets: ["latin"],
   display: "swap",
-  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "npm-safe | npm dependency security for Node.js",
+    default: "npm-safe | Package context before install",
     template: "%s | npm-safe",
   },
   description:
-    "Audit npm dependencies, trace vulnerabilities, apply compatible fixes, and verify package integrity with the @hort/nps CLI.",
+    "See package details, dependency counts, and available health signals before installing npm packages with @hort/nps.",
   applicationName: "npm-safe",
   keywords: [
-    "npm security",
-    "Node.js dependency scanner",
-    "npm vulnerability audit",
-    "software supply chain security",
+    "npm package safety",
+    "npm package information",
+    "package manager wrapper",
+    "dependency install review",
     "@hort/nps",
   ],
   openGraph: {
-    title: "npm-safe | npm dependency security for Node.js",
+    title: "npm-safe | Package context before install",
     description:
-      "Find vulnerable npm dependencies, understand where they came from, and take action from your terminal.",
+      "A package information screen before install. Keep using npm, pnpm, or bun and take a more informed look first.",
     type: "website",
   },
 };
@@ -48,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} ${googleSansCode.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">

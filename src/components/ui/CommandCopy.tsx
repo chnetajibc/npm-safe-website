@@ -25,6 +25,7 @@ export default function CommandCopy({ command, className }: { command: string; c
         <span className="whitespace-nowrap">{command}</span>
       </div>
       <button
+        type="button"
         onClick={handleCopy}
         className="p-1.5 rounded-md hover:bg-white/10 text-muted hover:text-foreground transition-colors flex-shrink-0"
         aria-label={status === "copied" ? "Command copied" : status === "error" ? "Could not copy command" : "Copy command"}

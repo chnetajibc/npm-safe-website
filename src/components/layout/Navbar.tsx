@@ -1,8 +1,30 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight, ShieldCheck } from "lucide-react";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import { useEffect, useRef, useState } from "react";
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (!menuRef.current?.contains(event.target as Node) && !menuButtonRef.current?.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    return () => document.removeEventListener("pointerdown", closeOnOutsideClick);
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <header className="site-header">
       <div className="site-nav">
@@ -19,24 +41,50 @@ export default function Navbar() {
         </nav>
 
         <div className="nav-actions">
-          <Link className="nav-external" href="https://github.com/netaji/npm-safe" target="_blank" rel="noreferrer">
+          <Link className="nav-external" href="https://github.com/abhishektumula/npm-safe" target="_blank" rel="noreferrer">
             GitHub <ArrowUpRight size={13} />
           </Link>
           <ThemeToggle />
-          <Link href="/docs#getting-started" className="nav-cta">Get started <span>↗</span></Link>
+          <Link href="/docs/getting-started" className="nav-cta">Get started <span>↗</span></Link>
         </div>
 
-        <details className="mobile-navigation">
-          <summary aria-label="Navigation menu"><span /><span /></summary>
-          <nav aria-label="Mobile navigation">
+        <div className="mobile-navigation">
+          <button
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation-panel"
+            className={`mobile-menu-toggle${menuOpen ? " is-open" : ""}`}
+            onClick={() => setMenuOpen((open) => !open)}
+            onKeyDown={(event) => {
+              if (event.key === "Escape" && menuOpen) {
+                closeMenu();
+                menuButtonRef.current?.focus();
+              }
+            }}
+            ref={menuButtonRef}
+            type="button"
+          >
+            <span /><span />
+          </button>
+          {menuOpen && <nav
+            aria-label="Mobile navigation"
+            id="mobile-navigation-panel"
+            onKeyDown={(event) => {
+              if (event.key === "Escape") {
+                closeMenu();
+                menuButtonRef.current?.focus();
+              }
+            }}
+            ref={menuRef}
+          >
             <div className="mobile-theme-row"><span>Appearance</span><ThemeToggle /></div>
-            <Link href="/docs">Documentation</Link>
-            <Link href="/#features">Features</Link>
-            <Link href="/blogs">Blog</Link>
-            <Link href="https://github.com/netaji/npm-safe" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></Link>
-            <Link href="/docs#getting-started" className="mobile-cta">Get started</Link>
-          </nav>
-        </details>
+            <Link href="/docs" onClick={closeMenu}>Documentation</Link>
+            <Link href="/#features" onClick={closeMenu}>Features</Link>
+            <Link href="/blogs" onClick={closeMenu}>Blog</Link>
+            <Link href="https://github.com/abhishektumula/npm-safe" onClick={closeMenu} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></Link>
+            <Link href="/docs/getting-started" className="mobile-cta" onClick={closeMenu}>Get started</Link>
+          </nav>}
+        </div>
       </div>
     </header>
   );
