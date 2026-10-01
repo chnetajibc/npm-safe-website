@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Google_Sans_Code } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -14,24 +14,45 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const googleSansCode = Google_Sans_Code({
+  variable: "--font-google-sans-code",
+  subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: false,
+});
+
 export const metadata: Metadata = {
-  title: "npm-safe - Secure your Node.js ecosystem",
-  description: "A fast, modular, and secure open-source tool for managing your npm projects.",
+  title: {
+    default: "npm-safe | npm dependency security for Node.js",
+    template: "%s | npm-safe",
+  },
+  description:
+    "Audit npm dependencies, trace vulnerabilities, apply compatible fixes, and verify package integrity with the @hort/nps CLI.",
+  applicationName: "npm-safe",
+  keywords: [
+    "npm security",
+    "Node.js dependency scanner",
+    "npm vulnerability audit",
+    "software supply chain security",
+    "@hort/nps",
+  ],
+  openGraph: {
+    title: "npm-safe | npm dependency security for Node.js",
+    description:
+      "Find vulnerable npm dependencies, understand where they came from, and take action from your terminal.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${geistSans.variable} ${geistMono.variable} ${googleSansCode.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col relative bg-background text-foreground">
-        {/* Subtle dot pattern background */}
-        <div className="fixed inset-0 z-[-1] bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-30"></div>
-        <div className="fixed inset-0 z-[-1] bg-gradient-to-t from-background via-transparent to-background"></div>
-        
+      <body className="min-h-full flex flex-col bg-background text-foreground">
         <Navbar />
-        <main className="flex-1 z-0 pt-24">{children}</main>
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>

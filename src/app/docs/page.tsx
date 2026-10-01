@@ -11,7 +11,7 @@ export default function DocsPage() {
       {docs.map((doc) => (
         <section key={doc.slug} id={doc.slug} className="scroll-mt-32">
           <article className="max-w-3xl">
-            <div className="prose prose-invert prose-slate prose-lg max-w-none prose-headings:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
+            <div className="prose prose-slate prose-lg max-w-none prose-headings:text-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
               <ReactMarkdown 
                 rehypePlugins={[rehypeHighlight]}
                 components={{

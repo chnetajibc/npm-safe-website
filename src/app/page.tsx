@@ -1,199 +1,235 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { Shield, Zap, Terminal, Lock, Activity, ChevronRight } from "lucide-react";
+import {
+  ArrowDownRight,
+  ArrowRight,
+  ArrowUpRight,
+  BadgeCheck,
+  Bug,
+  Boxes,
+  Braces,
+  CircleCheck,
+  GitBranch,
+  LockKeyhole,
+  PackageCheck,
+  ScanSearch,
+  ShieldCheck,
+  Terminal,
+} from "lucide-react";
 import CommandCopy from "@/components/ui/CommandCopy";
+
+const features = [
+  {
+    number: "01",
+    icon: ScanSearch,
+    title: "Trace the whole dependency tree",
+    description:
+      "Audit direct and transitive packages, cross-reference vulnerability sources, and see which dependency path brought an issue into your project.",
+    command: "nps audit",
+    className: "feature-audit",
+  },
+  {
+    number: "02",
+    icon: Bug,
+    title: "Move from finding to fixing",
+    description:
+      "Use the automatic fix flow for compatible updates and lockfile patches, with semver in mind.",
+    command: "nps audit --fix",
+    className: "feature-fix",
+  },
+  {
+    number: "03",
+    icon: LockKeyhole,
+    title: "Check package integrity",
+    description:
+      "Verify installed package contents against npm registry signatures and look for unexpected changes after installation.",
+    command: "nps verify --strict",
+    className: "feature-integrity",
+  },
+  {
+    number: "04",
+    icon: Braces,
+    title: "Review major upgrades",
+    description:
+      "When a safe patch is not enough, inspect breaking changes and choose major-version upgrades in an interactive workflow.",
+    command: "nps update",
+    className: "feature-upgrade",
+  },
+  {
+    number: "05",
+    icon: Boxes,
+    title: "Bring security into CI",
+    description:
+      "Export audit data as JSON for your reporting tools, and use strict verification to fail a pipeline on signature mismatches.",
+    command: "nps audit --json",
+    className: "feature-ci",
+  },
+];
+
+const steps = [
+  { number: "1", title: "Install", detail: "Add the CLI globally with npm." },
+  { number: "2", title: "Audit", detail: "Run it in your Node.js project." },
+  { number: "3", title: "Act", detail: "Fix, verify, or wire checks into CI." },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center overflow-hidden">
-      {/* Hero Section */}
-      <section className="w-full relative min-h-[80vh] flex flex-col items-center justify-center pt-12 pb-16 md:pt-24 md:pb-24">
-        {/* Background Gradients */}
-        <div className="absolute top-0 inset-x-0 h-full w-full overflow-hidden -z-10 pointer-events-none">
-          <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-primary/20 blur-[120px]" />
-          <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-secondary/15 blur-[100px]" />
-          <div className="absolute bottom-[-10%] left-[40%] w-[600px] h-[600px] rounded-full bg-blue-500/10 blur-[120px]" />
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="container mx-auto px-4 text-center z-10 max-w-4xl"
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]">
-            Secure your Node.js <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-blue-400">
-              ecosystem instantly.
-            </span>
-          </h1>
-          
-          <p className="max-w-2xl mx-auto text-xl text-muted mb-12 font-medium">
-            The next-generation security suite for npm. Prevent supply chain attacks, automate vulnerability fixes, and verify package integrity at the speed of light.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-            <Link
-              href="/docs"
-              className="group flex items-center justify-center px-8 py-4 rounded-full bg-foreground text-background font-semibold hover:bg-foreground/90 transition-all text-lg shadow-[0_0_40px_rgba(255,255,255,0.1)] flex-shrink-0"
-            >
-              Read the Docs
-              <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <CommandCopy command="npm i -g @hort/nps" />
-          </div>
-
-          {/* Terminal Mockup */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="w-full max-w-4xl mx-auto rounded-xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-2xl shadow-2xl overflow-hidden text-left"
-          >
-            <div className="flex items-center px-4 py-3 border-b border-white/10 bg-white/5">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              </div>
-              <div className="mx-auto text-xs font-mono text-muted">bash - @hort/nps</div>
-            </div>
-            <div className="p-6 font-mono text-sm md:text-base leading-relaxed overflow-x-auto">
-              <div className="flex gap-4">
-                <span className="text-green-400">➜</span>
-                <span className="text-blue-400">~/project</span>
-                <span className="text-foreground">nps audit --fix</span>
-              </div>
-              <div className="mt-2 text-muted">
-                [1/3] Analyzing dependencies (428 packages)...
-              </div>
-              <div className="text-muted">
-                [2/3] Cross-referencing NVD and GitHub Advisories...
-              </div>
-              <div className="text-muted mb-2">
-                [3/3] Applying smart patches...
-              </div>
-              <div className="text-green-400 mb-2">
-                ✔ Fixed 14 vulnerabilities (3 High, 11 Moderate)
-              </div>
-              <div className="text-foreground border-l-2 border-green-500 pl-4 py-1 my-2 bg-green-500/10">
-                Supply chain verified. 0 tampering detected.
-              </div>
-              <div className="flex gap-4 mt-4">
-                <span className="text-green-400">➜</span>
-                <span className="text-blue-400">~/project</span>
-                <span className="w-2 h-5 bg-white/50 animate-pulse" />
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Bento Grid Features Section */}
-      <section className="w-full py-16 md:py-24 bg-background relative z-10">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12 md:mb-20">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 md:mb-6">Engineered for absolute security</h2>
-            <p className="text-xl text-muted max-w-2xl mx-auto">
-              Everything you need to sleep soundly at night, built into a single, blazing-fast CLI.
+    <div className="landing-page">
+      <section className="hero-section">
+        <div className="hero-grid" aria-hidden="true" />
+        <div className="hero-wrap">
+          <div className="hero-copy">
+            <p className="eyebrow"><span className="eyebrow-mark" /> npm security, in your terminal</p>
+            <h1>Know what’s in your tree.<br /><span>Keep it safe.</span></h1>
+            <p className="hero-description">
+              Find vulnerable npm dependencies, understand where they came from, and take action without leaving your workflow.
             </p>
+            <div className="hero-actions">
+              <Link href="/docs#getting-started" className="button-primary">
+                Get started <ArrowRight size={17} />
+              </Link>
+              <Link href="https://github.com/netaji/npm-safe" className="button-quiet" target="_blank" rel="noreferrer">
+                Explore on GitHub <ArrowUpRight size={16} />
+              </Link>
+            </div>
+            <div className="hero-proof">
+              <span><CircleCheck size={15} /> Open source</span>
+              <span><Terminal size={15} /> Works from your CLI</span>
+              <span><PackageCheck size={15} /> Built for npm projects</span>
+            </div>
           </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Feature 1 - Large */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="md:col-span-2 p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors relative overflow-hidden group"
-            >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -mr-20 -mt-20 transition-opacity group-hover:opacity-100 opacity-50" />
-              <Shield className="h-10 w-10 text-primary mb-6" />
-              <h3 className="text-3xl font-bold mb-4">Deep Vulnerability Scanning</h3>
-              <p className="text-muted text-lg max-w-md leading-relaxed">
-                We don't just check your direct dependencies. `nps` deeply analyzes transitive paths and resolves lockfile conflicts automatically, fixing vulnerabilities that native tools can't.
-              </p>
-            </motion.div>
 
-            {/* Feature 2 - Small */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: 0.1 }}
-              className="p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors"
-            >
-              <Lock className="h-10 w-10 text-purple-400 mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Tamper Proof</h3>
-              <p className="text-muted leading-relaxed">
-                Cryptographically verify package integrity against registry signatures to prevent supply chain attacks.
-              </p>
-            </motion.div>
-
-            {/* Feature 3 - Small */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: 0.2 }}
-              className="p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors"
-            >
-              <Zap className="h-10 w-10 text-yellow-400 mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Lightning Fast</h3>
-              <p className="text-muted leading-relaxed">
-                Built with performance in mind. Scan and fix massive enterprise monorepos in milliseconds, not minutes.
-              </p>
-            </motion.div>
-
-            {/* Feature 4 - Large */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: 0.3 }}
-              className="md:col-span-2 p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors relative overflow-hidden group"
-            >
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] -ml-20 -mb-20 transition-opacity group-hover:opacity-100 opacity-50" />
-              <Activity className="h-10 w-10 text-blue-400 mb-6" />
-              <h3 className="text-3xl font-bold mb-4">CI/CD Native</h3>
-              <p className="text-muted text-lg max-w-md leading-relaxed">
-                Export audits to structured JSON. Enforce strict policies that automatically fail builds if unsigned or vulnerable code is pushed to production.
-              </p>
-            </motion.div>
+          <div className="hero-terminal" aria-label="Example npm-safe commands">
+            <div className="terminal-topbar">
+              <div className="terminal-lights" aria-hidden="true"><i /><i /><i /></div>
+              <span>your-project <span className="terminal-path">/ security</span></span>
+              <span className="terminal-label">SHELL</span>
+            </div>
+            <div className="terminal-body">
+              <p className="terminal-kicker">Start with an audit</p>
+              <div className="terminal-command"><span>$</span> nps audit</div>
+              <div className="terminal-rule" />
+              <p className="terminal-kicker">Apply compatible fixes</p>
+              <div className="terminal-command"><span>$</span> nps audit --fix</div>
+              <div className="terminal-rule" />
+              <p className="terminal-kicker">Verify installed packages</p>
+              <div className="terminal-command"><span>$</span> nps verify</div>
+              <div className="terminal-footer"><BadgeCheck size={15} /> One focused toolkit for npm project security</div>
+            </div>
+            <div className="terminal-stamp" aria-hidden="true"><ShieldCheck size={20} /></div>
           </div>
+        </div>
+        <div className="hero-bottomline"><span>DEPENDENCY HEALTH</span><span>01 — 05</span></div>
+      </section>
+
+      <section className="intro-strip" aria-label="Product summary">
+        <div className="intro-mark"><ShieldCheck size={24} /></div>
+        <p><strong>Security work should fit the way you build.</strong> Audit, fix, verify, and keep moving.</p>
+        <Link href="/docs#features" className="text-link">See how it works <ArrowDownRight size={15} /></Link>
+      </section>
+
+      <section className="features-section" id="features">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">A practical security toolkit</p>
+            <h2>From dependency<br className="mobile-break" /> <span>risk to resolution.</span></h2>
+          </div>
+          <p className="section-summary">Get a clearer picture of your npm dependencies, then choose the right next step for your project.</p>
+        </div>
+
+        <div className="feature-grid">
+          {features.map(({ number, icon: Icon, title, description, command, className }) => (
+            <article className={`feature-card ${className}`} key={number}>
+              <div className="feature-card-top"><span className="feature-number">{number} / 05</span><Icon size={19} strokeWidth={1.8} /></div>
+              <div className="feature-copy">
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+              <div className={`feature-visual visual-${number}`} aria-hidden="true">
+                {number === "01" && (
+                  <div className="dependency-map">
+                    <span className="graph-root">your app</span>
+                    <span className="graph-link graph-link-one" />
+                    <span className="graph-link graph-link-two" />
+                    <span className="graph-node graph-direct"><i />direct dependency</span>
+                    <span className="graph-node graph-transitive"><i />transitive package</span>
+                    <span className="graph-tag">advisory path</span>
+                  </div>
+                )}
+                {number === "02" && (
+                  <div className="version-compare">
+                    <div><small>INSTALLED</small><strong>Current version</strong></div>
+                    <ArrowRight size={17} />
+                    <div className="version-target"><small>COMPATIBLE UPDATE</small><strong>Semver-safe fix</strong></div>
+                  </div>
+                )}
+                {number === "03" && (
+                  <div className="integrity-compare">
+                    <span><PackageCheck size={17} /> Installed package</span>
+                    <span className="integrity-connector" />
+                    <span><ShieldCheck size={17} /> Registry signature</span>
+                  </div>
+                )}
+                {number === "04" && (
+                  <div className="upgrade-panel">
+                    <div className="upgrade-panel-title"><Terminal size={13} /> UPGRADE REVIEW</div>
+                    <div><span className="upgrade-check">✓</span> Inspect changed APIs</div>
+                    <div><span className="upgrade-choice">↳</span> Choose a major update</div>
+                  </div>
+                )}
+                {number === "05" && (
+                  <div className="pipeline-visual">
+                    <span className="pipeline-command">nps audit --json</span>
+                    <ArrowRight size={18} />
+                    <span className="pipeline-result"><Braces size={17} /> structured JSON</span>
+                    <ArrowRight size={18} />
+                    <span className="pipeline-result">CI workflow</span>
+                  </div>
+                )}
+              </div>
+              <div className="feature-command"><span>$</span>{command}</div>
+            </article>
+          ))}
         </div>
       </section>
 
-      {/* Developers Section */}
-      <section className="w-full py-16 md:py-24 bg-background border-t border-white/5 relative z-10">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Meet the Creators</h2>
-            <p className="text-muted text-lg">Built by the open-source community, for the open-source community.</p>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 max-w-3xl mx-auto">
-            {/* Netaji */}
-            <a href="https://github.com/chnetajibc" target="_blank" rel="noreferrer" className="flex items-center gap-4 p-3 pr-8 rounded-full border border-border/50 bg-white/[0.01] hover:bg-white/[0.03] hover:border-border transition-all group w-full sm:w-auto">
-              <img src="https://github.com/chnetajibc.png" alt="Netaji" className="w-14 h-14 rounded-full border border-white/10 group-hover:border-primary/50 transition-colors" />
-              <div className="text-left">
-                <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">CH Netaji Bhadraiahnath</h3>
-                <p className="text-xs text-muted mt-0.5">Core Contributor</p>
-              </div>
-            </a>
-
-            {/* Abhishek */}
-            <a href="https://github.com/abhishektumula" target="_blank" rel="noreferrer" className="flex items-center gap-4 p-3 pr-8 rounded-full border border-border/50 bg-white/[0.01] hover:bg-white/[0.03] hover:border-border transition-all group w-full sm:w-auto">
-              <img src="https://github.com/abhishektumula.png" alt="Abhishek" className="w-14 h-14 rounded-full border border-white/10 group-hover:border-primary/50 transition-colors" />
-              <div className="text-left">
-                <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">Abhishek Tumula</h3>
-                <p className="text-xs text-muted mt-0.5">Core Contributor</p>
-              </div>
-            </a>
-          </div>
+      <section className="workflow-section">
+        <div className="workflow-aside">
+          <p className="eyebrow">A shorter path to safer releases</p>
+          <h2>Security checks<br />that fit <span>your flow.</span></h2>
+          <p>Start locally, learn what needs attention, and carry the same checks into your delivery pipeline.</p>
+          <Link href="/docs" className="text-link">Browse the documentation <ArrowRight size={15} /></Link>
         </div>
+        <div className="workflow-steps">
+          {steps.map((step) => (
+            <div className="workflow-step" key={step.number}>
+              <span className="step-number">{step.number}</span>
+              <div><h3>{step.title}</h3><p>{step.detail}</p></div>
+              {step.number === "1" && <code>npm install -g @hort/nps</code>}
+              {step.number === "2" && <code>nps audit</code>}
+              {step.number === "3" && <code>nps verify --strict</code>}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="install-section" id="install">
+        <div className="install-copy">
+          <p className="eyebrow">Ready when you are</p>
+          <h2>Make your next<br />install a <span>safer one.</span></h2>
+          <p>Install @hort/nps, run your first audit, and explore the commands from the getting started guide.</p>
+          <Link href="/docs#getting-started" className="button-light">Read the getting started guide <ArrowRight size={16} /></Link>
+        </div>
+        <div className="install-code">
+          <div className="install-code-label"><Terminal size={15} /> TERMINAL</div>
+          <CommandCopy command="npm install -g @hort/nps" className="install-copy-command" />
+          <p>Then run <code>nps audit</code> inside your project.</p>
+        </div>
+        <div className="install-decoration" aria-hidden="true">nps<span>.</span></div>
+      </section>
+
+      <section className="more-section">
+        <div><GitBranch size={18} /><span>Open source. Made for the npm ecosystem.</span></div>
+        <Link href="https://www.npmjs.com/package/@hort/nps" target="_blank" rel="noreferrer">View @hort/nps on npm <ArrowUpRight size={15} /></Link>
       </section>
     </div>
   );

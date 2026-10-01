@@ -1,17 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Copy } from "lucide-react";
+import { Check, Copy, X } from "lucide-react";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export default function CommandCopy({ command, className }: { command: string; className?: string }) {
-  const [copied, setCopied] = useState(false);
+  const [status, setStatus] = useState<"idle" | "copied" | "error">("idle");
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(command);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(command);
+      setStatus("copied");
+    } catch {
+      setStatus("error");
+    }
+    setTimeout(() => setStatus("idle"), 2200);
   };
 
   return (
@@ -23,10 +27,14 @@ export default function CommandCopy({ command, className }: { command: string; c
       <button
         onClick={handleCopy}
         className="p-1.5 rounded-md hover:bg-white/10 text-muted hover:text-foreground transition-colors flex-shrink-0"
-        aria-label="Copy command"
+        aria-label={status === "copied" ? "Command copied" : status === "error" ? "Could not copy command" : "Copy command"}
+        title={status === "error" ? "Clipboard unavailable. Select and copy the command." : undefined}
       >
-        {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+        {status === "copied" ? <Check className="h-4 w-4 text-emerald-400" /> : status === "error" ? <X className="h-4 w-4 text-red-400" /> : <Copy className="h-4 w-4" />}
       </button>
+      <span className="sr-only" aria-live="polite">
+        {status === "copied" ? "Command copied to clipboard." : status === "error" ? "Clipboard unavailable. Select and copy the command." : ""}
+      </span>
     </div>
   );
 }
