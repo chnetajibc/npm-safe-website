@@ -24,7 +24,7 @@ export default function BlogsPage() {
     <main className="blogs-page">
       <div className="blogs-breadcrumb"><Link href="/">npm-safe</Link><span>/</span><span>Blog</span></div>
       <header className="blogs-header">
-        <p>WRITING FROM THE NPS PROJECT</p>
+        <p>Writing from the nps project</p>
         <h1>Blog</h1>
         <p className="blogs-description">Product notes and practical thoughts on package decisions, supply-chain signals, and building nps.</p>
       </header>
@@ -32,7 +32,7 @@ export default function BlogsPage() {
       <section className="blogs-catalog" aria-label="All articles">
         <div className="blogs-catalog-heading">
           <h2>All articles</h2>
-          <span>{String(posts.length).padStart(2, '0')} {posts.length === 1 ? 'ARTICLE' : 'ARTICLES'}</span>
+          <span>{posts.length} {posts.length === 1 ? 'article' : 'articles'}</span>
         </div>
         {posts.length > 0 ? (
           <div className="blogs-list">

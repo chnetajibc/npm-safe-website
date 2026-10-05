@@ -113,12 +113,12 @@ export default async function DocsArticlePage({ params }: DocsRouteProps) {
         <nav className="docs-next-prev" aria-label="Documentation pages">
           {previous ? (
             <Link href={`/docs/${previous.slug}`} className="docs-page-direction">
-              <span><ArrowLeft size={14} /> PREVIOUS</span><strong>{previous.meta.title}</strong>
+              <span><ArrowLeft size={14} /> Previous</span><strong>{previous.meta.title}</strong>
             </Link>
           ) : <span />}
           {next && (
             <Link href={`/docs/${next.slug}`} className="docs-page-direction docs-page-direction-next">
-              <span>NEXT <ArrowRight size={14} /></span><strong>{next.meta.title}</strong>
+              <span>Next <ArrowRight size={14} /></span><strong>{next.meta.title}</strong>
             </Link>
           )}
         </nav>

@@ -46,7 +46,7 @@ export default function DocsTableOfContents({ headings }: { headings: Heading[] 
 
   return (
     <aside className="docs-toc">
-      <p>ON THIS PAGE</p>
+      <p>On this page</p>
       <nav aria-label="On this page">
         {headings.map((heading) => (
           <a

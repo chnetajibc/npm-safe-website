@@ -13,7 +13,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
     <div className="docs-layout">
       <aside className="docs-sidebar">
         <div className="docs-sidebar-sticky">
-          <p className="docs-sidebar-title">IN THIS GUIDE</p>
+          <p className="docs-sidebar-title">In this guide</p>
           <SidebarNav docs={docLinks} />
           <div className="docs-sidebar-note">
             <span className="docs-sidebar-dot" />

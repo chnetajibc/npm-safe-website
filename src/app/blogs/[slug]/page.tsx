@@ -46,8 +46,8 @@ export default async function BlogPostPage({ params }: BlogRouteProps) {
   return (
     <main className="journal-article-page">
       <div className="journal-article-topline">
-        <Link href="/blogs"><ArrowLeft size={15} /> All notes</Link>
-        <span>FIELD NOTES <i>·</i> 01</span>
+        <Link href="/blogs"><ArrowLeft size={15} /> All articles</Link>
+        <span>Notes from nps</span>
       </div>
 
       <header className="journal-article-header">
@@ -83,7 +83,7 @@ export default async function BlogPostPage({ params }: BlogRouteProps) {
       </article>
 
       <footer className="journal-article-footer">
-        <div><span>KEEP GOING</span><p>See how the install flow works in your own project.</p></div>
+        <div><span>Keep going</span><p>See how the install flow works in your own project.</p></div>
         <Link href="/docs">Read the quick start <ArrowRight size={15} /></Link>
       </footer>
     </main>
