@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUpRight, BookOpen, ChevronRight, Code, LayoutGrid, Menu, Newspaper, X } from "lucide-react";
-import ThemeToggle from "@/components/ui/ThemeToggle";
+import AccentSwitcher from "@/components/landing/AccentSwitcher";
 import { useEffect, useRef, useState } from "react";
 
 export default function Navbar() {
@@ -44,7 +44,7 @@ export default function Navbar() {
           <Link className="nav-external" href="https://github.com/abhishektumula/npm-safe" target="_blank" rel="noreferrer">
             GitHub <ArrowUpRight size={13} />
           </Link>
-          <ThemeToggle />
+          <AccentSwitcher />
           <Link href="/docs/getting-started" className="nav-cta">Get started</Link>
         </div>
 
@@ -103,7 +103,7 @@ export default function Navbar() {
                 </Link>
               </div>
               <div className="mobile-nav-bottom">
-                <div className="mobile-theme-row"><span><i /> Appearance</span><ThemeToggle /></div>
+                <div className="mobile-accent-row"><span><i /> Accent</span><AccentSwitcher /></div>
                 <Link href="/docs/getting-started" className="mobile-cta" onClick={closeMenu}>Get started <ArrowUpRight size={15} /></Link>
               </div>
             </nav>

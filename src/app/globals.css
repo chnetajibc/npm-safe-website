@@ -2,22 +2,22 @@
 @import "highlight.js/styles/github-dark.css";
 @plugin "@tailwindcss/typography";
 
-/* Design system: cobalt, chalk, and ink. One loud colour; everything else stays quiet. */
+/* Design system: cobalt, chalk, and ink. One loud colour; everything else stays quiet. Dark only. */
 :root {
-  color-scheme: light dark;
-  --background: light-dark(#f1f2f6, #0a0b10);
-  --foreground: light-dark(#0d0f18, #eceef6);
-  --surface: light-dark(#ffffff, #12141c);
-  --surface-soft: light-dark(#e7e9f0, #171a24);
-  --border: light-dark(#d3d7e2, #262a38);
-  --text-secondary: light-dark(#474d63, #a4a9bc);
-  --text-tertiary: light-dark(#646b82, #8087a0);
+  color-scheme: dark;
+  --background: #0a0b10;
+  --foreground: #eceef6;
+  --surface: #12141c;
+  --surface-soft: #171a24;
+  --border: #262a38;
+  --text-secondary: #a4a9bc;
+  --text-tertiary: #8087a0;
   --muted: var(--text-secondary);
-  --primary: light-dark(#2530e6, #a0a8ff);
-  --secondary: light-dark(#2530e6, #a0a8ff);
+  --primary: #a0a8ff;
+  --secondary: #a0a8ff;
   --cobalt: #2b36f0;
   --ink: #090b12;
-  --ink-section: light-dark(#0b0d16, #06070b);
+  --ink-section: #06070b;
   --ok: #3ddc97;
   --warn: #ffb84d;
   --bad: #ff6b57;
@@ -26,9 +26,6 @@
   --font-code: var(--font-jetbrains-mono);
   --tw-prose-body: var(--text-secondary);
 }
-
-:root[data-theme="light"] { color-scheme: light; }
-:root[data-theme="dark"] { color-scheme: dark; }
 
 @theme inline {
   --color-background: var(--background);
@@ -71,8 +68,6 @@ button { font-family: inherit; }
 .nav-actions { gap: 10px; }
 .nav-external { display: inline-flex; align-items: center; gap: 4px; padding: 8px 12px; border-radius: 8px; color: var(--text-secondary); font-size: 15px; font-weight: 550; transition: color .15s ease, background .15s ease; }
 .nav-external:hover { background: var(--surface-soft); color: var(--foreground); }
-.theme-toggle { display: grid; width: 40px; height: 40px; place-items: center; padding: 0; border: 1px solid var(--border); border-radius: 10px; background: transparent; color: var(--text-secondary); cursor: pointer; transition: background .15s ease, color .15s ease; }
-.theme-toggle:hover { background: var(--surface-soft); color: var(--foreground); }
 .nav-cta { display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 10px; background: var(--foreground); color: var(--background); font-size: 14px; font-weight: 650; transition: transform .15s ease, opacity .15s ease; }
 .nav-cta:hover { opacity: .88; transform: translateY(-1px); }
 .mobile-navigation { display: none; position: relative; }
@@ -92,9 +87,6 @@ button { font-family: inherit; }
 .mobile-nav-link strong { font-size: 15px; font-weight: 650; }
 .mobile-nav-link small { margin-top: 3px; color: var(--text-secondary); font-size: 12.5px; line-height: 1.4; }
 .mobile-nav-bottom { width: min(100%, 440px); margin: 18px auto 0; }
-.mobile-theme-row { display: flex; align-items: center; justify-content: space-between; min-height: 56px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 14px; }
-.mobile-theme-row > span { display: inline-flex; align-items: center; gap: 8px; }
-.mobile-theme-row i { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); }
 .mobile-navigation nav .mobile-cta { display: flex; align-items: center; justify-content: space-between; min-height: 52px; margin-top: 8px; padding: 0 18px; border-radius: 12px; background: var(--cobalt); color: #fff; font-size: 15px; font-weight: 650; }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes menu-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
@@ -290,6 +282,38 @@ button { font-family: inherit; }
 .closer-inner > p { max-width: 28em; margin: 30px 0 30px; color: rgb(255 255 255 / 84%); font-size: 20px; line-height: 1.5; }
 .closer-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .closer-mark { position: relative; z-index: 0; width: min(1240px, calc(100% - 64px)); height: .52em; margin: 8px auto 0; overflow: hidden; color: rgb(255 255 255 / 12%); font-size: clamp(200px, 46vw, 680px); font-weight: 800; letter-spacing: -.06em; line-height: .8; user-select: none; }
+
+/* Accent theming: animate the loud colour when the dock picker changes it. */
+.hero, .closer {
+  transition: background-color .6s ease;
+}
+.brand-icon, .mobile-navigation nav .mobile-cta, .journal-author-mark {
+  transition: background-color .6s ease;
+}
+.dots i, .score s {
+  transition: background-color .6s ease;
+}
+.text-link, .footer-wordmark span, .mobile-nav-link-top, .blog-entry-action {
+  transition: color .6s ease, text-decoration-color .6s ease;
+}
+
+/* Accent dropdown (lives in the navbar, desktop and mobile). */
+.accent-dropdown { position: relative; display: inline-flex; }
+.accent-trigger { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; padding: 0 10px 0 12px; border: 1px solid var(--border); border-radius: 999px; background: transparent; color: var(--text-secondary); cursor: pointer; transition: background .15s ease, color .15s ease, border-color .15s ease; }
+.accent-trigger:hover { background: var(--surface-soft); color: var(--foreground); }
+.accent-trigger i { width: 16px; height: 16px; border-radius: 50%; transition: background-color .6s ease; }
+.accent-trigger svg { transition: transform .2s ease; }
+.accent-trigger[aria-expanded="true"] svg { transform: rotate(180deg); }
+.accent-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 70; min-width: 172px; padding: 6px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); box-shadow: 0 16px 40px rgb(9 11 18 / 30%); animation: accent-menu-in .16s ease-out both; }
+.accent-option { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 40px; padding: 0 10px; border: 0; border-radius: 9px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 550; text-align: left; cursor: pointer; transition: background .15s ease; }
+.accent-option:hover { background: var(--surface-soft); }
+.accent-option i { width: 16px; height: 16px; flex: 0 0 auto; border-radius: 50%; }
+.accent-option span { flex: 1; }
+.accent-option svg { color: var(--primary); transition: color .6s ease; }
+@keyframes accent-menu-in { from { opacity: 0; transform: translateY(-4px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.mobile-accent-row { display: flex; align-items: center; justify-content: space-between; min-height: 56px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 14px; }
+.mobile-accent-row > span { display: inline-flex; align-items: center; gap: 8px; }
+.mobile-accent-row i { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); transition: background-color .6s ease; }
 
 @media (max-width: 1100px) {
   .hero-inner { gap: 48px; }
